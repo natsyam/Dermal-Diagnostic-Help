@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "dermal-diagnostic-help"
+version = "0.1.0"
+description = ""
+authors = ["DanilMargaryan <margaryan.danil@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.109.0"
+uvicorn = "^0.27.0"
+streamlit = "^1.30.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

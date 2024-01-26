@@ -2,7 +2,7 @@
 name = "dermal-diagnostic-help"
 version = "0.1.0"
 description = ""
-authors = ["DanilMargaryan <margaryan.danil@mail.ru>"]
+authors = ["natsyam <a.mark3lova4@yandex.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -10,6 +10,8 @@ python = "^3.11"
 fastapi = "^0.109.0"
 uvicorn = "^0.27.0"
 streamlit = "^1.30.0"
+sqlalchemy = "^2.0.25"
+python-multipart = "^0.0.6"
 
 
 [tool.poetry.group.dev.dependencies]

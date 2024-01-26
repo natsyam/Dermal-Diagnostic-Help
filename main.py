@@ -1,20 +1,19 @@
 from datetime import datetime
 import os
+import shutil
 
 import uvicorn
 from fastapi import FastAPI, File, UploadFile, HTTPException, Depends
 from sqlalchemy.orm import Session
+
+from yolo_prediction import predict
 from sql_app import models
 from sql_app.database import SessionLocal, engine
-import shutil
+
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-
-
-def classify_image(image_path: str) -> str:
-    return "Positive"
 
 
 # Dependency
@@ -39,18 +38,17 @@ async def create_upload_file(
         with open(file_location, "wb+") as file_object:
             shutil.copyfileobj(file.file, file_object)
 
-        # Классификация изображения
-        class_prediction = classify_image(file_location)
+        prediction = predict(file_location)
 
         # Сохраняем информацию о файле в базу данных
         db_file = models.MelanomaPhoto(
-            upload_time=datetime.utcnow(), class_prediction=class_prediction
+            upload_time=datetime.utcnow(), class_prediction=prediction
         )
         db.add(db_file)
         db.commit()
         db.refresh(db_file)
 
-        return {"class_prediction": class_prediction}
+        return {"class_prediction": prediction}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

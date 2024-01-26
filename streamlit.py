@@ -4,7 +4,7 @@ from PIL import Image
 import io
 
 # Заголовок приложения
-st.title("Классификатор меланом")
+st.title("Dermal Diagnostic Help")
 
 # Виджет для загрузки изображения
 uploaded_file = st.file_uploader(

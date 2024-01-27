@@ -50,6 +50,8 @@
 ## **Как запустить приложение ?**
 
 ```
+streamlit run streamlit.py
+
 uvicorn main:app
 ```
 
